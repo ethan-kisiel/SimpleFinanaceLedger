@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Main-Class: com.ethankisiel.simplefinanceledger.Launcher
+Class-Path: bootstrapfx-core-0.4.0.jar javafx-swt.jar javafx.web.jar jav
+ afx.base.jar javafx.fxml.jar javafx.media.jar javafx.swing.jar javafx.c
+ ontrols.jar javafx.graphics.jar javafx-media-21.0.1.jar validatorfx-0.4
+ .0.jar javafx-graphics-21.0.1.jar javafx-fxml-21.0.1.jar javafx-web-21.
+ 0.1-mac-aarch64.jar junit-4.10.jar javafx-controls-21.0.1-mac-aarch64.j
+ ar json-simple-1.1.1.jar hamcrest-core-1.1.jar javafx-fxml-21.0.1-mac-a
+ arch64.jar javafx-graphics-21.0.1-mac-aarch64.jar javafx-controls-21.0.
+ 1.jar javafx-base-21.0.1-mac-aarch64.jar controlsfx-11.1.2.jar formsfx-
+ core-11.6.0.jar javafx-media-21.0.1-mac-aarch64.jar javafx-base-21.0.1.
+ jar javafx-web-21.0.1.jar
+

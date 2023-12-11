@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="386.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ethankisiel.simplefinanceledger.Controllers.LedgerEditorController">
+   <center>
+      <VBox>
+         <children>
+            <TableView id="dataTable" fx:id="entryTable" onMouseReleased="#entrySelected" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn id="dateColumn" fx:id="dateColumn" prefWidth="50.0" text="Date" />
+                <TableColumn id="checkbookColumn" fx:id="checkbookColumn" prefWidth="110.0" text="Checkbook" />
+                  <TableColumn id="checkNumberColumn" fx:id="checkNumberColumn" prefWidth="60.0" text="Check #" />
+                  <TableColumn id="amountColumn" fx:id="amountColumn" prefWidth="60.0" text="Amount" />
+                  <TableColumn id="categoryColumn" fx:id="categoryColumn" prefWidth="100.0" text="Category" />
+                  <TableColumn id="subcategoryColumn" fx:id="subcategoryColumn" prefWidth="75.0" text="Sub Category" />
+                  <TableColumn id="itemizationColumn" fx:id="itemizationColumn" prefWidth="75.0" text="Itemization" />
+                  <TableColumn id="notesColumn" fx:id="notesColumn" prefWidth="75.0" text="Notes" />
+              </columns>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="50.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="NEVER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change Mode :">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="changeModeText" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Entry" underline="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets right="15.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox>
+         <children>
+            <HBox id="editInterface" alignment="TOP_CENTER" fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Date">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <DatePicker id="dateField" fx:id="datePicker" onAction="#checkForCompletion" />
+                        <Label text="Amount">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <TextField id="amountField" fx:id="amountField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="\$" />
+                        <Label text="Check Number">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <TextField id="checkNumberField" fx:id="checkNumberField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="#" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <Label text="Checkbook">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <ChoiceBox id="checkbookSelector" fx:id="checkbookSelector" onMousePressed="#checkForCompletion" prefWidth="150.0" />
+                        <TextField id="newCheckbookField" fx:id="checkbookField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New Checkbook" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Category">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <ChoiceBox id="categorySelector" fx:id="categorySelector" onMouseClicked="#checkForCompletion" prefWidth="150.0" />
+                        <TextField id="categoryTextField" fx:id="categoryField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New Category" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Sub Category">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <ChoiceBox id="subcategorySelector" fx:id="subcategorySelector" onMouseClicked="#checkForCompletion" prefWidth="150.0" />
+                        <TextField id="subcategoryTextField" fx:id="subcategoryField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New Subcategory" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Itemization">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <ChoiceBox id="itemizationSelector" fx:id="itemizationSelector" onMouseClicked="#checkForCompletion" prefWidth="150.0" />
+                        <TextField id="itemizationTextField" fx:id="itemizationField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New itemization" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Notes">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <TextArea id="notesTextArea" fx:id="notesField" onKeyTyped="#checkForCompletion" prefHeight="200.0" prefWidth="200.0" promptText="Notes.." />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="NEVER">
+                     <children>
+                        <Button id="saveButton" fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#saveEntry" text="Save" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearFields" text="Clear">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                        <Button id="deleteButton" fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteEntry" text="Delete" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
+            <Label alignment="BOTTOM_LEFT" opacity="0.5" text="© Ethan Kisiel Software all rights reserved">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </bottom>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showFilterModal" text="Filters" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

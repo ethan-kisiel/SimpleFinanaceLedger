@@ -1,0 +1,7 @@
+
+[{"date":"2023-12-01","amount":678.0,"checkNumber":"333","notes":"note here","checkbook":"Checkbook #1","id":0,"category":"Separate Category","subcategory":"Separate subcategory","itemization":"new Itemization"},
+{"date":"2023-12-21","amount":212.0,"checkNumber":"333","notes":"","checkbook":"Checkbook #2","id":2,"category":"Misc","subcategory":"New Subcategory","itemization":"Misc"},
+{"date":"2023-11-26","amount":56.0,"checkNumber":"333","notes":"k of c raffle donation","checkbook":"Cash","id":3,"category":"Donations","subcategory":"K of C","itemization":"K of C Raffle"},
+{"date":"2025-01-11","amount":69.42,"checkNumber":"556","notes":"blah blah blah blah","checkbook":"Hidden checkbook","id":4,"category":"here is a new category","subcategory":"here is a new subcategory","itemization":"here is a new itemization"},
+{"date":"2022-09-09","amount":56.42,"checkNumber":"2223","notes":"jj","checkbook":"Hidden checkbook","id":5,"category":"Separate Category","subcategory":"K of C","itemization":"K of C Raffle"}
+]

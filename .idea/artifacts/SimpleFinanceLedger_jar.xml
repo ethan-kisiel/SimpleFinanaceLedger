@@ -1,0 +1,43 @@
+<component name="ArtifactManager">
+  <artifact name="SimpleFinanceLedger:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SimpleFinanceLedger_jar</output-path>
+    <root id="root">
+      <element id="archive" name="SimpleFinanceLedger.jar">
+        <element id="module-output" name="SimpleFinanceLedger" />
+      </element>
+      <element id="library" level="project" name="Maven: org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0" />
+      <element id="library" level="project" name="lib" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-media:21.0.1" />
+      <element id="library" level="project" name="Maven: net.synedra:validatorfx:0.4.0" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:21.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:21.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-web:mac-aarch64:21.0.1" />
+      <element id="library" level="project" name="Maven: junit:junit:4.10" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:mac-aarch64:21.0.1" />
+      <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+      <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:mac-aarch64:21.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:mac-aarch64:21.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:21.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:mac-aarch64:21.0.1" />
+      <element id="library" level="project" name="Maven: org.controlsfx:controlsfx:11.1.2" />
+      <element id="library" level="project" name="Maven: com.dlsc.formsfx:formsfx-core:11.6.0" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-media:mac-aarch64:21.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:21.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-web:21.0.1" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libdecora_sse.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libfxplugins.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libglass.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libglib-lite.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libgstreamer-lite.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libjavafx_font.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libjavafx_iio.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libjfxmedia_avf.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libjfxmedia.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libjfxwebkit.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libprism_common.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libprism_es2.dylib" />
+      <element id="file-copy" path="$USER_HOME$/javafx-sdk-21.0.1/lib/libprism_sw.dylib" />
+    </root>
+  </artifact>
+</component>
