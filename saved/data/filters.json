@@ -1,6 +1,1 @@
-{
-  "CHECKBOOK_FILTERS": {"CHECKBOOK1":  false},
-  "CATEGORY_FILTERS": {"CHECKBOOK1":  false},
-  "SUBCATEGORY_FILTERS": {"CHECKBOOK1":  false},
-  "ITEMIZATION_FILTERS": {"CHECKBOOK1":  false}
-}
+{"ITEMIZATION_FILTERS":{"here is a new itemization":true,"K of C Raffle":true,"Misc":true,"new Itemization":true},"CHECKBOOK_FILTERS":{"Checkbook #2":true,"Checkbook #1":false,"Cash":true,"Hidden checkbook":true},"YEAR_FILTERS":{"2025":true,"2023":false,"2022":true},"CATEGORY_FILTERS":{"here is a new category":true,"Donations":true,"Misc":true,"Separate Category":false},"SUBCATEGORY_FILTERS":{"Separate subcategory":true,"here is a new subcategory":true,"Misc":false,"New Subcategory":false,"K of C":false}}

@@ -35,6 +35,7 @@ public class FiltersManager
         HashMap<String, HashMap<String, Boolean>> filters = ReadWriteUtil.loadFilters();
         // need to add years
 
+        filters = updateFilter(Constants.YEAR_FILTERS, entityManager.years, filters);
         filters = updateFilter(Constants.CHECKBOOK_FILTERS, entityManager.checkbooks, filters);
         filters = updateFilter(Constants.CATEGORY_FILTERS, entityManager.categories, filters);
         filters = updateFilter(Constants.SUBCATEGORY_FILTERS, entityManager.subcategories, filters);

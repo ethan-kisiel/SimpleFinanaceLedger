@@ -5,13 +5,13 @@ import com.ethankisiel.simplefinanceledger.Models.Entry;
 import com.ethankisiel.simplefinanceledger.Models.SortByID;
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import org.json.simple.parser.ParseException;
-import org.w3c.dom.Entity;
+
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Year;
+
 import java.util.*;
 
 public class EntityManager
@@ -25,6 +25,8 @@ public class EntityManager
     public Set<String> itemizations;
     public Set<String> years;
 
+
+    public ObservableList<String> yearOptions;
     public ObservableList<String> checkbookOptions;
     public ObservableList<String> categoryOptions;
     public ObservableList<String> subcategoryOptions;
@@ -33,14 +35,17 @@ public class EntityManager
     // Load in entries
     // Grab existing categories and such from loaded entries
 
-    public EntityManager(List<String> checkbooks, List<String> categories, List<String> subcategories, List<String> itemizations)
+    public EntityManager(List<String> years, List<String> checkbooks, List<String> categories, List<String> subcategories, List<String> itemizations)
     {
+
+        this.years = new HashSet<>(years);
 
         this.checkbooks = new HashSet<>(checkbooks);
         this.categories = new HashSet<>(categories);
         this.subcategories = new HashSet<>(subcategories);
         this.itemizations = new HashSet<>(itemizations);
 
+        yearOptions = FXCollections.observableArrayList(this.years).sorted();
         checkbookOptions = FXCollections.observableArrayList(this.checkbooks).sorted();
         categoryOptions = FXCollections.observableArrayList(this.categories).sorted();
         subcategoryOptions = FXCollections.observableArrayList(this.subcategories).sorted();
@@ -53,6 +58,16 @@ public class EntityManager
         catch (Exception e)
         {
             entries = FXCollections.observableArrayList();
+        }
+    }
+
+    public void addYear(LocalDate date)
+    {
+        Year dateYear = Year.of(date.getYear());
+
+        if (years.add(dateYear.toString()))
+        {
+            yearOptions = FXCollections.observableArrayList(years).sorted();
         }
     }
 
@@ -112,6 +127,8 @@ public class EntityManager
         // look thru the different items: Checkbook, Category, Subcategory, Itemization
         // which utilize selectors/reusiability, and if the current selector lists
         // don't contain the items listed, we will add them here
+
+        addYear(entry.getLocalDate());
 
         addCheckbook(entry.getCheckbook());
         //checkbooks.add(entry.getCheckbook());

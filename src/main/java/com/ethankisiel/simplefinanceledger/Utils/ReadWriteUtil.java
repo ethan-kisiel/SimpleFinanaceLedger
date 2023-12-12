@@ -130,9 +130,10 @@ public class ReadWriteUtil
     public static void saveFilters(Map<String, HashMap<String, Boolean>> filters) throws IOException
     {
 
-        JSONObject jsonObject = (JSONObject) filters;;
+        JSONObject jsonObject = new JSONObject(filters);
 
-        try (FileWriter fileWriter = new FileWriter(Constants.OBJECTS_PATH))
+
+        try (FileWriter fileWriter = new FileWriter(Constants.FILTERS_PATH))
         {
             fileWriter.write(jsonObject.toJSONString());
         }

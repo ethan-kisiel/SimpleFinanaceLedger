@@ -19,6 +19,8 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Year;
+import java.time.ZoneOffset;
 import java.util.*;
 
 public class LedgerEditorController implements Initializable
@@ -101,6 +103,7 @@ public class LedgerEditorController implements Initializable
         saveButton.setDisable(true);
         deleteButton.setDisable(true);
 
+        ArrayList<String> years = new ArrayList<>();
         ArrayList<String> checkbooks = new ArrayList<>();
         ArrayList<String> categories = new ArrayList<>();
         ArrayList<String> subcategories = new ArrayList<>();
@@ -118,9 +121,14 @@ public class LedgerEditorController implements Initializable
             ArrayList<Entry> entries = (ArrayList<Entry>) ReadWriteUtil.loadEntries();
 
 
-
             for (Entry entry : entries)
             {
+
+                int entryYear = entry.getLocalDate().getYear();
+
+
+                years.add(Year.of(entryYear).toString());
+
                 checkbooks.add(entry.getCheckbook());
                 categories.add(entry.getCategory());
                 subcategories.add(entry.getSubcategory());
@@ -132,7 +140,7 @@ public class LedgerEditorController implements Initializable
             e.printStackTrace();
         }
 
-        entityManager = new EntityManager(checkbooks, categories, subcategories, itemizations);
+        entityManager = new EntityManager(years, checkbooks, categories, subcategories, itemizations);
 
 
         checkbookSelector.setItems(entityManager.checkbookOptions);
@@ -191,6 +199,20 @@ public class LedgerEditorController implements Initializable
         categorySelector.setItems(entityManager.categoryOptions);
         subcategorySelector.setItems(entityManager.subcategoryOptions);
         itemizationSelector.setItems(entityManager.itemizationOptions);
+    }
+
+    public void updateFilters()
+    {
+        try
+        {
+            ReadWriteUtil.saveFilters(entryFilters);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
     }
 
     public boolean checkForCompletion()
