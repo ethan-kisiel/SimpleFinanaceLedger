@@ -4,6 +4,7 @@ import com.ethankisiel.simplefinanceledger.Constants;
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 public class FiltersManager
@@ -43,5 +44,20 @@ public class FiltersManager
 
 
         return filters;
+    }
+
+    public static Set<String> activeFilters(HashMap<String, HashMap<String, Boolean>> allFilters, String filterType)
+    {
+        Set<String> activeFilters = new HashSet<>();
+
+        for (String filter : allFilters.get(filterType).keySet())
+        {
+            if (allFilters.get(filterType).get(filter))
+            {
+                activeFilters.add(filter);
+            }
+        }
+
+        return activeFilters;
     }
 }

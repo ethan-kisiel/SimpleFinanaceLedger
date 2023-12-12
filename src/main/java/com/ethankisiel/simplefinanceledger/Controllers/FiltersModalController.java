@@ -33,16 +33,27 @@ public class FiltersModalController implements Initializable
     ListView<CheckBox> yearsList;
 
     @FXML
+    CheckBox yearSelectAll;
+
+    @FXML
     ListView<CheckBox> checkbooksList;
+    @FXML
+    CheckBox checkbookSelectAll;
 
     @FXML
     ListView<CheckBox> categoriesList;
+    @FXML
+    CheckBox categorySelectAll;
 
     @FXML
     ListView<CheckBox> subcategoriesList;
+    @FXML
+    CheckBox subcategorySelectAll;
 
     @FXML
     ListView<CheckBox> itemizationsList;
+    @FXML
+    CheckBox itemizationSelectAll;
 
     private HashMap<String, ArrayList<CheckBox>> pendingChanges = new HashMap<>();
 
@@ -95,21 +106,6 @@ public class FiltersModalController implements Initializable
         initializeFilters(categoriesList, parentController.entryFilters.get(Constants.CATEGORY_FILTERS), Constants.CATEGORY_FILTERS);
         initializeFilters(subcategoriesList, parentController.entryFilters.get(Constants.SUBCATEGORY_FILTERS), Constants.SUBCATEGORY_FILTERS);
         initializeFilters(itemizationsList, parentController.entryFilters.get(Constants.ITEMIZATION_FILTERS), Constants.ITEMIZATION_FILTERS);
-
-//        for (String filter : parentController.entryFilters.get(Constants.CHECKBOOK_FILTERS).keySet())
-//        {
-//            Boolean isChecked = parentController.entryFilters.get(Constants.CHECKBOOK_FILTERS).get(filter);
-//            CheckBox checkbox = new CheckBox(filter);
-//            checkbox.setAllowIndeterminate(false);
-//            checkbox.setSelected(isChecked);
-//
-//            checkbooksList.getItems().add(checkbox);
-//        }
-
-//        checkbooksList.getItems().addAll(parentController.entryFilters.get(Constants.CHECKBOOK_FILTERS).keySet());
-//        categoriesList.getItems().addAll(parentController.entryFilters.get(Constants.CATEGORY_FILTERS).keySet());
-//        subcategoriesList.getItems().addAll(parentController.entryFilters.get(Constants.SUBCATEGORY_FILTERS).keySet());
-//        itemizationsList.getItems().addAll(parentController.entryFilters.get(Constants.ITEMIZATION_FILTERS).keySet());
     }
 
 
@@ -134,6 +130,97 @@ public class FiltersModalController implements Initializable
         parentController.updateFilters();
         closeModal();
         return;
+    }
+
+    public void selectAllYears()
+    {
+        if (!pendingChanges.keySet().contains(Constants.YEAR_FILTERS))
+        {
+            ArrayList<CheckBox> columnChanges = new ArrayList<>();
+
+            pendingChanges.put(Constants.YEAR_FILTERS, columnChanges);
+        }
+
+        for (CheckBox checkBox : yearsList.getItems())
+        {
+            if (checkBox.isSelected() != yearSelectAll.isSelected())
+            {
+                checkBox.setSelected(yearSelectAll.isSelected());
+                pendingChanges.get(Constants.YEAR_FILTERS).add(checkBox);
+            }
+        }
+    }
+    public void selectAllCheckbooks()
+    {
+        if (!pendingChanges.keySet().contains(Constants.CHECKBOOK_FILTERS))
+        {
+            ArrayList<CheckBox> columnChanges = new ArrayList<>();
+
+            pendingChanges.put(Constants.CHECKBOOK_FILTERS, columnChanges);
+        }
+
+        for (CheckBox checkBox : checkbooksList.getItems())
+        {
+            if (checkBox.isSelected() != checkbookSelectAll.isSelected())
+            {
+                checkBox.setSelected(checkbookSelectAll.isSelected());
+                pendingChanges.get(Constants.CHECKBOOK_FILTERS).add(checkBox);
+            }
+        }
+    }
+    public void selectAllCategories()
+    {
+        if (!pendingChanges.keySet().contains(Constants.CATEGORY_FILTERS))
+        {
+            ArrayList<CheckBox> columnChanges = new ArrayList<>();
+
+            pendingChanges.put(Constants.CATEGORY_FILTERS, columnChanges);
+        }
+
+        for (CheckBox checkBox : categoriesList.getItems())
+        {
+            if (checkBox.isSelected() != categorySelectAll.isSelected())
+            {
+                checkBox.setSelected(categorySelectAll.isSelected());
+                pendingChanges.get(Constants.CATEGORY_FILTERS).add(checkBox);
+            }
+        }
+    }
+    public void selectAllSubcategories()
+    {
+        if (!pendingChanges.keySet().contains(Constants.SUBCATEGORY_FILTERS))
+        {
+            ArrayList<CheckBox> columnChanges = new ArrayList<>();
+
+            pendingChanges.put(Constants.SUBCATEGORY_FILTERS, columnChanges);
+        }
+
+        for (CheckBox checkBox : subcategoriesList.getItems())
+        {
+            if (checkBox.isSelected() != subcategorySelectAll.isSelected())
+            {
+                checkBox.setSelected(subcategorySelectAll.isSelected());
+                pendingChanges.get(Constants.SUBCATEGORY_FILTERS).add(checkBox);
+            }
+        }
+    }
+    public void selectAllItemizations()
+    {
+        if (!pendingChanges.keySet().contains(Constants.ITEMIZATION_FILTERS))
+        {
+            ArrayList<CheckBox> columnChanges = new ArrayList<>();
+
+            pendingChanges.put(Constants.ITEMIZATION_FILTERS, columnChanges);
+        }
+
+        for (CheckBox checkBox : itemizationsList.getItems())
+        {
+            if (checkBox.isSelected() != itemizationSelectAll.isSelected())
+            {
+                checkBox.setSelected(itemizationSelectAll.isSelected());
+                pendingChanges.get(Constants.ITEMIZATION_FILTERS).add(checkBox);
+            }
+        }
     }
 
     public void closeModal()

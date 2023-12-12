@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.time.Year;
 import java.time.ZoneOffset;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class LedgerEditorController implements Initializable
 {
@@ -164,6 +165,31 @@ public class LedgerEditorController implements Initializable
     {
         entryTable.getItems().sort(new SortByDate());
     }
+    public void filterTableEntries()
+    {
+        entryTable.getItems().setAll(entityManager.entries.filtered(new Predicate<Entry>()
+        {
+            @Override
+            public boolean test(Entry entry)
+            {
+                Set<String> activeYears = FiltersManager.activeFilters(entryFilters, Constants.YEAR_FILTERS);
+                Set<String> activeCheckbooks = FiltersManager.activeFilters(entryFilters, Constants.CHECKBOOK_FILTERS);
+                Set<String> activeCategories = FiltersManager.activeFilters(entryFilters, Constants.CATEGORY_FILTERS);
+                Set<String> activeSubcategories = FiltersManager.activeFilters(entryFilters, Constants.SUBCATEGORY_FILTERS);
+                Set<String> activeItemizations = FiltersManager.activeFilters(entryFilters, Constants.ITEMIZATION_FILTERS);
+
+                String entryYear = Year.of(entry.getLocalDate().getYear()).toString();
+                boolean validYear = activeYears.contains(entryYear);
+                boolean validCheckbook = activeCheckbooks.contains(entry.getCheckbook());
+                boolean validCategory = activeCategories.contains(entry.getCategory());
+                boolean validSubcategory = activeSubcategories.contains(entry.getSubcategory());
+                boolean validItemization = activeItemizations.contains(entry.getItemization());
+
+
+                return (validYear && validCheckbook && validCategory && validSubcategory && validItemization);
+            }
+        }));
+    }
 
     public void initializeTable(List<Entry> entries)
     {
@@ -178,6 +204,7 @@ public class LedgerEditorController implements Initializable
 
         entryTable.getItems().addAll(entries);
 
+        filterTableEntries();
         sortTableEntries();
     }
 
@@ -213,6 +240,8 @@ public class LedgerEditorController implements Initializable
             return;
         }
 
+        filterTableEntries();
+        sortTableEntries();
     }
 
     public boolean checkForCompletion()

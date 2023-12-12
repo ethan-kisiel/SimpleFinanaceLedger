@@ -21,6 +21,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <CheckBox fx:id="yearSelectAll" mnemonicParsing="false" onAction="#selectAllYears" text="Select All">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
                   <ListView fx:id="yearsList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
@@ -35,6 +40,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <CheckBox fx:id="checkbookSelectAll" mnemonicParsing="false" onAction="#selectAllCheckbooks" text="Select All">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
                   <ListView fx:id="checkbooksList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
@@ -49,6 +59,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <CheckBox fx:id="categorySelectAll" mnemonicParsing="false" onAction="#selectAllCategories" text="Select All">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
                   <ListView fx:id="categoriesList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
@@ -63,6 +78,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <CheckBox fx:id="subcategorySelectAll" mnemonicParsing="false" onAction="#selectAllSubcategories" text="Select All">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
                   <ListView fx:id="subcategoriesList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
@@ -77,6 +97,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <CheckBox fx:id="itemizationSelectAll" mnemonicParsing="false" onAction="#selectAllItemizations" text="Select All">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
                   <ListView fx:id="itemizationsList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
