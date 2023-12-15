@@ -100,7 +100,6 @@ public class FiltersModalController implements Initializable
     {
         this.parentController = parentController;
 
-
         initializeFilters(yearsList, parentController.entryFilters.get(Constants.YEAR_FILTERS), Constants.YEAR_FILTERS);
         initializeFilters(checkbooksList, parentController.entryFilters.get(Constants.CHECKBOOK_FILTERS), Constants.CHECKBOOK_FILTERS);
         initializeFilters(categoriesList, parentController.entryFilters.get(Constants.CATEGORY_FILTERS), Constants.CATEGORY_FILTERS);

@@ -6,21 +6,25 @@ import com.ethankisiel.simplefinanceledger.Managers.EntityManager;
 import com.ethankisiel.simplefinanceledger.Managers.FiltersManager;
 import com.ethankisiel.simplefinanceledger.Models.Entry;
 import com.ethankisiel.simplefinanceledger.Models.SortByDate;
+
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 
+import com.ethankisiel.simplefinanceledger.Utils.ValidationUtil;
 import com.ethankisiel.simplefinanceledger.Views.FiltersModalView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import org.controlsfx.validation.ValidationResult;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Year;
-import java.time.ZoneOffset;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -34,6 +38,7 @@ public class LedgerEditorController implements Initializable
     private int selectedEntryId;
     private Entry selectedEntry;
 
+    private final ValidationSupport validationSupport = new ValidationSupport();
 
     @FXML
     Text changeModeText;
@@ -101,8 +106,19 @@ public class LedgerEditorController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        saveButton.setDisable(true);
         deleteButton.setDisable(true);
+
+        saveButton.disableProperty().bind(validationSupport.invalidProperty());
+
+        validationSupport.setErrorDecorationEnabled(true);
+        validationSupport.registerValidator(datePicker, Validator.createEmptyValidator("Select a date"));
+        validationSupport.registerValidator(amountField, (Control c, String newValue) ->
+                ValidationResult.fromErrorIf(c, "Enter a valid amount", ValidationUtil.isInvalidAmount(newValue)));
+
+        ValidationUtil.registerBidirectionalValidation(checkbookField, checkbookSelector, validationSupport);
+        ValidationUtil.registerBidirectionalValidation(categoryField, categorySelector, validationSupport);
+        ValidationUtil.registerBidirectionalValidation(subcategoryField, subcategorySelector, validationSupport);
+        ValidationUtil.registerBidirectionalValidation(itemizationField, itemizationSelector, validationSupport);
 
         ArrayList<String> years = new ArrayList<>();
         ArrayList<String> checkbooks = new ArrayList<>();
@@ -208,18 +224,6 @@ public class LedgerEditorController implements Initializable
         sortTableEntries();
     }
 
-    public void setEntityManager(EntityManager manager)
-    {
-        this.entityManager = manager;
-    }
-
-    public void updateButtons()
-    {
-        if (isNewEntry)
-        {
-            deleteButton.setDisable(true);
-        }
-    }
     public void updateSelectors()
     {
         checkbookSelector.setItems(entityManager.checkbookOptions);
@@ -260,24 +264,24 @@ public class LedgerEditorController implements Initializable
 
         isComplete = (isDateValid && isAmountValid && isCheckNumberValid && isCheckbookValid && isCategoryValid && isSubcategoryValid && isItemizationValid);
 
-        if (isComplete || !isNewEntry)
-        {
-            saveButton.setDisable(false);
-        }
-        else
-        {
-            saveButton.setDisable(true);
-        }
+//        if (isComplete || !isNewEntry)
+//        {
+//            saveButton.setDisable(false);
+//        }
+//        else
+//        {
+//            saveButton.setDisable(true);
+//        }
 
-        if (!isNewEntry)
-        {
-            deleteButton.setDisable(false);
-            changeModeText.setText(Constants.EDIT_ENTRY);
-        }
-        else
+        if (isNewEntry)
         {
             deleteButton.setDisable(true);
             changeModeText.setText(Constants.CREATE_ENTRY);
+        }
+        else
+        {
+            deleteButton.setDisable(false);
+            changeModeText.setText(Constants.EDIT_ENTRY);
         }
 
         return isComplete;
@@ -332,9 +336,9 @@ public class LedgerEditorController implements Initializable
         selectedEntry = entryTable.getSelectionModel().getSelectedItem();
         if (selectedEntry != null)
         {
-            isNewEntry = false;
+            clearFields();
 
-            saveButton.setDisable(false);
+            isNewEntry = false;
             deleteButton.setDisable(false);
 
             datePicker.setValue(selectedEntry.getLocalDate());
@@ -346,6 +350,8 @@ public class LedgerEditorController implements Initializable
             subcategorySelector.setValue(selectedEntry.getSubcategory());
             itemizationSelector.setValue(selectedEntry.getItemization());
             notesField.setText(selectedEntry.getNotes());
+
+            checkForCompletion();
         }
     }
 
@@ -436,9 +442,6 @@ public class LedgerEditorController implements Initializable
         }
         return;
     }
-
-
-
 
 
     public void showFilterModal() throws IOException

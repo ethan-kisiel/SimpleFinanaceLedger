@@ -17,4 +17,5 @@ module com.ethankisiel.simplefinanceledger {
     exports com.ethankisiel.simplefinanceledger.Models;
 
     opens com.ethankisiel.simplefinanceledger.Controllers to javafx.fxml;
+    //opens javafx.scene to org.controlsfx.controls;
 }
