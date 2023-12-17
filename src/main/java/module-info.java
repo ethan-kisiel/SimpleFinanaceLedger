@@ -2,6 +2,7 @@ module com.ethankisiel.simplefinanceledger {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires javafx.graphics;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -9,7 +10,9 @@ module com.ethankisiel.simplefinanceledger {
     requires org.kordamp.bootstrapfx.core;
     requires json.simple;
 
+
     opens com.ethankisiel.simplefinanceledger to javafx.fxml;
+
 
     exports com.ethankisiel.simplefinanceledger;
     exports com.ethankisiel.simplefinanceledger.Controllers;
@@ -17,5 +20,4 @@ module com.ethankisiel.simplefinanceledger {
     exports com.ethankisiel.simplefinanceledger.Models;
 
     opens com.ethankisiel.simplefinanceledger.Controllers to javafx.fxml;
-    //opens javafx.scene to org.controlsfx.controls;
 }

@@ -1,6 +1,8 @@
 
-[{"date":"2023-12-01","amount":678.0,"checkNumber":"333","notes":"note here","checkbook":"Checkbook #1","id":0,"category":"Separate Category","subcategory":"Separate subcategory","itemization":"new Itemization"},
-{"date":"2023-12-21","amount":212.0,"checkNumber":"333","notes":"","checkbook":"Checkbook #2","id":2,"category":"Misc","subcategory":"New Subcategory","itemization":"Misc"},
-{"date":"2023-11-26","amount":56.0,"checkNumber":"333","notes":"k of c raffle donation","checkbook":"Cash","id":3,"category":"Donations","subcategory":"K of C","itemization":"K of C Raffle"},
-{"date":"2022-12-30","amount":23232.0,"checkNumber":"4444","notes":"fkgjfkjgfkjg","checkbook":"New Checkbook","id":6,"category":"Donations","subcategory":"K of C","itemization":"K of C Raffle"}
+[{"date":"2023-12-01","amount":678.0,"checkNumber":"333","notes":"note here","checkbook":"Checkbook #1","id":0,"category":"Separate Category","subcategory":"here is a new subcategory option","itemization":"A NEW MF FILTER OPTION"},
+{"date":"2023-12-21","amount":212.0,"checkNumber":"333","notes":"","checkbook":"Checkbook #2","id":2,"category":"NEW CATEGORY","subcategory":"505 park ave","itemization":"NEW ITEMIZATION"},
+{"date":"2023-11-26","amount":56.0,"checkNumber":"333","notes":"k of c raffle donation","checkbook":"Cash","id":3,"category":"Donations","subcategory":"here is a new subcategory option 1","itemization":"K of C Raffle"},
+{"date":"2022-12-30","amount":23232.0,"checkNumber":"4444","notes":"fkgjfkjgfkjg","checkbook":"New Checkbook","id":6,"category":"Donations","subcategory":"K of C","itemization":"K of C Raffle"},
+{"date":"2023-12-13","amount":27.0,"checkNumber":"338","notes":"","checkbook":"here is a ","id":8,"category":"Donations","subcategory":"here is a new subcategory option","itemization":"A NEW MF FILTER OPTION"},
+{"date":"2023-12-20","amount":69.0,"checkNumber":"","notes":"","checkbook":"Cash","id":9,"category":"Misc","subcategory":"505 park ave","itemization":"ITEMIZATION 69"}
 ]

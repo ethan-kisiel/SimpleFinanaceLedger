@@ -4,6 +4,7 @@ import javafx.scene.control.PasswordField;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.ZoneOffset;
 import java.util.Comparator;
 import java.util.Date;
@@ -88,6 +89,11 @@ public class Entry
             e.printStackTrace();
             throw e;
         }
+    }
+
+    public String getYear()
+    {
+        return Year.of(this.getLocalDate().getYear()).toString();
     }
 
     public void setAmount(float newAmount)

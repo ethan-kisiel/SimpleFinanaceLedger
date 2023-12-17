@@ -5,6 +5,7 @@ import com.ethankisiel.simplefinanceledger.Constants;
 import com.ethankisiel.simplefinanceledger.Managers.EntityManager;
 import com.ethankisiel.simplefinanceledger.Managers.FiltersManager;
 import com.ethankisiel.simplefinanceledger.Models.Entry;
+import com.ethankisiel.simplefinanceledger.Models.Filter;
 import com.ethankisiel.simplefinanceledger.Models.SortByDate;
 
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
@@ -31,6 +32,7 @@ import java.util.function.Predicate;
 public class LedgerEditorController implements Initializable
 {
     private EntityManager entityManager;
+    public FiltersManager filtersManager;
 
     public HashMap<String, HashMap<String, Boolean>> entryFilters;
 
@@ -134,7 +136,6 @@ public class LedgerEditorController implements Initializable
 
         try
         {
-
             ArrayList<Entry> entries = (ArrayList<Entry>) ReadWriteUtil.loadEntries();
 
 
@@ -158,6 +159,7 @@ public class LedgerEditorController implements Initializable
         }
 
         entityManager = new EntityManager(years, checkbooks, categories, subcategories, itemizations);
+        filtersManager = new FiltersManager(entityManager);
 
 
         checkbookSelector.setItems(entityManager.checkbookOptions);
@@ -172,7 +174,7 @@ public class LedgerEditorController implements Initializable
         itemizationSelector.setItems(entityManager.itemizationOptions);
 
 
-        entryFilters = FiltersManager.currentFilters(entityManager);
+        //entryFilters = FiltersManager.currentFilters(entityManager);
 
         initializeTable(entityManager.entries);
     }
@@ -181,21 +183,23 @@ public class LedgerEditorController implements Initializable
     {
         entryTable.getItems().sort(new SortByDate());
     }
+
     public void filterTableEntries()
     {
+//        this.entryFilters = FiltersManager.currentFilters()
         entryTable.getItems().setAll(entityManager.entries.filtered(new Predicate<Entry>()
         {
             @Override
             public boolean test(Entry entry)
             {
-                Set<String> activeYears = FiltersManager.activeFilters(entryFilters, Constants.YEAR_FILTERS);
-                Set<String> activeCheckbooks = FiltersManager.activeFilters(entryFilters, Constants.CHECKBOOK_FILTERS);
-                Set<String> activeCategories = FiltersManager.activeFilters(entryFilters, Constants.CATEGORY_FILTERS);
-                Set<String> activeSubcategories = FiltersManager.activeFilters(entryFilters, Constants.SUBCATEGORY_FILTERS);
-                Set<String> activeItemizations = FiltersManager.activeFilters(entryFilters, Constants.ITEMIZATION_FILTERS);
+                Set<String> activeYears = filtersManager.activeFilters(Constants.YEAR_FILTERS);
+                Set<String> activeCheckbooks = filtersManager.activeFilters(Constants.CHECKBOOK_FILTERS);
+                Set<String> activeCategories = filtersManager.activeFilters(Constants.CATEGORY_FILTERS);
+                Set<String> activeSubcategories = filtersManager.activeFilters(Constants.SUBCATEGORY_FILTERS);
+                Set<String> activeItemizations = filtersManager.activeFilters(Constants.ITEMIZATION_FILTERS);
 
-                String entryYear = Year.of(entry.getLocalDate().getYear()).toString();
-                boolean validYear = activeYears.contains(entryYear);
+                //String entryYear = Year.of(entry.getLocalDate().getYear()).toString();
+                boolean validYear = activeYears.contains(entry.getYear());
                 boolean validCheckbook = activeCheckbooks.contains(entry.getCheckbook());
                 boolean validCategory = activeCategories.contains(entry.getCategory());
                 boolean validSubcategory = activeSubcategories.contains(entry.getSubcategory());
@@ -234,15 +238,7 @@ public class LedgerEditorController implements Initializable
 
     public void updateFilters()
     {
-        try
-        {
-            ReadWriteUtil.saveFilters(entryFilters);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return;
-        }
+        filtersManager.saveFilters();
 
         filterTableEntries();
         sortTableEntries();
@@ -262,7 +258,7 @@ public class LedgerEditorController implements Initializable
         boolean isItemizationValid = (itemizationSelector.getValue() != null) || !itemizationField.getText().isEmpty();
         //boolean
 
-        isComplete = (isDateValid && isAmountValid && isCheckNumberValid && isCheckbookValid && isCategoryValid && isSubcategoryValid && isItemizationValid);
+        isComplete = (isDateValid && isAmountValid && isCheckbookValid && isCategoryValid && isSubcategoryValid && isItemizationValid);
 
 //        if (isComplete || !isNewEntry)
 //        {
@@ -398,7 +394,8 @@ public class LedgerEditorController implements Initializable
                 entityManager.addEntry(entry);
                 entryTable.getItems().add(entry);
 
-                entityManager.updateSelectors(entry);
+                entityManager.addSelectorsFromEntry(entry);
+                filtersManager.addFiltersFromEntry(entry);
 
                 softClearFields();
                 saveButton.setDisable(true);
@@ -410,14 +407,17 @@ public class LedgerEditorController implements Initializable
 
                 entryTable.getItems().set(index, entry);
 
-                entityManager.updateSelectors(entry);
+                entityManager.addSelectorsFromEntry(entry);
+                filtersManager.addFiltersFromEntry(entry);
 
                 clearFields();
-                saveButton.setDisable(true);
+                //saveButton.setDisable(true);
                 // update existing entry
             }
         }
 
+
+        //FiltersManager.updateFilter()
         updateSelectors();
         sortTableEntries();
         return;
@@ -436,7 +436,7 @@ public class LedgerEditorController implements Initializable
             selectedEntry = null;
             isNewEntry = true;
 
-            saveButton.setDisable(true);
+            //saveButton.setDisable(true);
             deleteButton.setDisable(true);
 
         }
@@ -446,8 +446,10 @@ public class LedgerEditorController implements Initializable
 
     public void showFilterModal() throws IOException
     {
+        updateFilters();
         try
         {
+            //System.out.println(shit);
             FiltersModalView.display(this);
         } catch (IOException e)
         {

@@ -2,6 +2,7 @@ package com.ethankisiel.simplefinanceledger.Controllers;
 
 import com.ethankisiel.simplefinanceledger.Constants;
 import com.ethankisiel.simplefinanceledger.FinanceLedgerApplication;
+import com.ethankisiel.simplefinanceledger.Managers.FiltersManager;
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -99,12 +100,13 @@ public class FiltersModalController implements Initializable
     public void setParentController(LedgerEditorController parentController)
     {
         this.parentController = parentController;
+        HashMap<String, HashMap<String, Boolean>> filters = parentController.filtersManager.currentFilters();
 
-        initializeFilters(yearsList, parentController.entryFilters.get(Constants.YEAR_FILTERS), Constants.YEAR_FILTERS);
-        initializeFilters(checkbooksList, parentController.entryFilters.get(Constants.CHECKBOOK_FILTERS), Constants.CHECKBOOK_FILTERS);
-        initializeFilters(categoriesList, parentController.entryFilters.get(Constants.CATEGORY_FILTERS), Constants.CATEGORY_FILTERS);
-        initializeFilters(subcategoriesList, parentController.entryFilters.get(Constants.SUBCATEGORY_FILTERS), Constants.SUBCATEGORY_FILTERS);
-        initializeFilters(itemizationsList, parentController.entryFilters.get(Constants.ITEMIZATION_FILTERS), Constants.ITEMIZATION_FILTERS);
+        initializeFilters(yearsList, filters.get(Constants.YEAR_FILTERS), Constants.YEAR_FILTERS);
+        initializeFilters(checkbooksList, filters.get(Constants.CHECKBOOK_FILTERS), Constants.CHECKBOOK_FILTERS);
+        initializeFilters(categoriesList, filters.get(Constants.CATEGORY_FILTERS), Constants.CATEGORY_FILTERS);
+        initializeFilters(subcategoriesList, filters.get(Constants.SUBCATEGORY_FILTERS), Constants.SUBCATEGORY_FILTERS);
+        initializeFilters(itemizationsList, filters.get(Constants.ITEMIZATION_FILTERS), Constants.ITEMIZATION_FILTERS);
     }
 
 
@@ -120,7 +122,8 @@ public class FiltersModalController implements Initializable
         {
             for (CheckBox checkBox : pendingChanges.get(columnChanges))
             {
-                parentController.entryFilters.get(columnChanges).put(checkBox.getText(), checkBox.isSelected());
+                //parentController.entryFilters.get(columnChanges).put(checkBox.getText(), checkBox.isSelected());
+                parentController.filtersManager.updateFilterStatus(columnChanges, checkBox.getText(), checkBox.isSelected());
             }
         }
 

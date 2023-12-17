@@ -61,6 +61,51 @@ public class EntityManager
         }
     }
 
+    public void reloadEntries()
+    {
+        this.years.clear();
+        this.checkbooks.clear();
+        this.categories.clear();
+        this.subcategories.clear();
+        this.itemizations.clear();
+
+        checkbooks.add(Constants.CASH_OPTION);
+        categories.add(Constants.MISCELLANEOUS_OPTION);
+        subcategories.add(Constants.MISCELLANEOUS_OPTION);
+        itemizations.add(Constants.MISCELLANEOUS_OPTION);
+
+        try
+        {
+            ArrayList<Entry> entries = (ArrayList<Entry>) ReadWriteUtil.loadEntries();
+
+
+            for (Entry entry : entries)
+            {
+
+                int entryYear = entry.getLocalDate().getYear();
+
+
+                years.add(Year.of(entryYear).toString());
+
+                checkbooks.add(entry.getCheckbook());
+                categories.add(entry.getCategory());
+                subcategories.add(entry.getSubcategory());
+                itemizations.add(entry.getItemization());
+            }
+
+            yearOptions = FXCollections.observableArrayList(this.years).sorted();
+            checkbookOptions = FXCollections.observableArrayList(this.checkbooks).sorted();
+            categoryOptions = FXCollections.observableArrayList(this.categories).sorted();
+            subcategoryOptions = FXCollections.observableArrayList(this.subcategories).sorted();
+            itemizationOptions = FXCollections.observableArrayList(this.itemizations).sorted();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
     public void addYear(LocalDate date)
     {
         Year dateYear = Year.of(date.getYear());
@@ -112,7 +157,7 @@ public class EntityManager
 
         for (Entry entry: entries)
         {
-            updateSelectors(entry);
+            addSelectorsFromEntry(entry);
         }
 
         addCheckbook(Constants.CASH_OPTION);
@@ -122,7 +167,7 @@ public class EntityManager
         addItemization(Constants.MISCELLANEOUS_OPTION);
     }
 
-    public void updateSelectors(Entry entry)
+    public void addSelectorsFromEntry(Entry entry)
     {
         // look thru the different items: Checkbook, Category, Subcategory, Itemization
         // which utilize selectors/reusiability, and if the current selector lists
@@ -150,7 +195,7 @@ public class EntityManager
 
         entries.add(entry);
 
-        updateSelectors(entry);
+        addSelectorsFromEntry(entry);
 
         try
         {
@@ -169,7 +214,7 @@ public class EntityManager
         int entryIndex = entries.indexOf(entry);
         entries.set(entryIndex, entry);
 
-        updateSelectors(entry);
+        addSelectorsFromEntry(entry);
 
         try
         {
