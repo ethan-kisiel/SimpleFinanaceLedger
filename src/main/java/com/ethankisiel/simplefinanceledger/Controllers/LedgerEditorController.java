@@ -46,6 +46,9 @@ public class LedgerEditorController implements Initializable
     Text changeModeText;
 
     @FXML
+    Text totalText;
+
+    @FXML
     TableView<Entry> entryTable;
     @FXML
     TableColumn<Entry, String> dateColumn;
@@ -226,6 +229,7 @@ public class LedgerEditorController implements Initializable
 
         filterTableEntries();
         sortTableEntries();
+        updateTotal();
     }
 
     public void updateSelectors()
@@ -242,6 +246,18 @@ public class LedgerEditorController implements Initializable
 
         filterTableEntries();
         sortTableEntries();
+    }
+
+    public void updateTotal()
+    {
+        float total = 0.0f;
+
+        for (Entry entry : entryTable.getItems())
+        {
+            total += entry.getAmount();
+        }
+
+        totalText.setText(Constants.formattedFloatAsMoney(total));
     }
 
     public boolean checkForCompletion()
@@ -398,7 +414,7 @@ public class LedgerEditorController implements Initializable
                 filtersManager.addFiltersFromEntry(entry);
 
                 softClearFields();
-                saveButton.setDisable(true);
+                //saveButton.setDisable(true);
             }
             else
             {
@@ -420,6 +436,7 @@ public class LedgerEditorController implements Initializable
         //FiltersManager.updateFilter()
         updateSelectors();
         sortTableEntries();
+        updateTotal();
         return;
     }
 
@@ -432,6 +449,8 @@ public class LedgerEditorController implements Initializable
 
             clearFields();
             updateSelectors();
+            sortTableEntries();
+            updateTotal();
 
             selectedEntry = null;
             isNewEntry = true;

@@ -1,1 +1,37 @@
-{"ITEMIZATION_FILTERS":{"NEW ITEMIZATION":true,"A NEW MF FILTER OPTION":true,"K of C Raffle":true,"Misc":true,"ITEMIZATION 69":true},"CHECKBOOK_FILTERS":{"Checkbook #2":true,"Checkbook #1":true,"New Checkbook":true,"Cash":true,"here is a ":true},"YEAR_FILTERS":{"2023":true,"2022":true},"CATEGORY_FILTERS":{"Donations":true,"Misc":true,"Separate Category":true,"NEW CATEGORY":true},"SUBCATEGORY_FILTERS":{"505 park ave":true,"Misc":true,"here is a new subcategory option":true,"K of C":true,"here is a new subcategory option 1":true}}
+
+{
+	"ITEMIZATION_FILTERS":
+	{
+		"Itemization123":true,
+		"A NEW MF FILTER OPTION":true,
+		"K of C Raffle":true,
+		"Misc":true,
+		"Itemization Filter trigger":true,
+		"ITEMIZATION 69":true
+	},
+	"CHECKBOOK_FILTERS":
+	{
+		"Checkbook #1":true,
+		"New Checkbook":true,
+		"Cash":true
+	},
+	"YEAR_FILTERS":
+	{
+		"2023":true,
+		"2022":true
+	},
+	"CATEGORY_FILTERS":
+	{
+		"Donations":true,
+		"Misc":true,
+		"Separate Category":true
+	},
+	"SUBCATEGORY_FILTERS":
+	{
+		"505 park ave":true,
+		"Misc":true,
+		"here is a new subcategory option":true,
+		"K of C":true,
+		"here is a new subcategory option 1":true
+	}
+}

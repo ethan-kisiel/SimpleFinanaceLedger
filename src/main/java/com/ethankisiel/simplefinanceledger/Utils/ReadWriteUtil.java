@@ -40,7 +40,7 @@ public class ReadWriteUtil
 
         try (FileWriter fileWriter = new FileWriter(Constants.OBJECTS_PATH))
         {
-            fileWriter.write(FormattedJSONArray.toJSONString(jsonArray));
+            fileWriter.write(JSONStringFormatter.formatJSONString(FormattedJSONArray.toJSONString(jsonArray)));
         }
         catch (Exception e)
         {
@@ -135,7 +135,7 @@ public class ReadWriteUtil
 
         try (FileWriter fileWriter = new FileWriter(Constants.FILTERS_PATH))
         {
-            fileWriter.write(jsonObject.toJSONString());
+            fileWriter.write(JSONStringFormatter.formatJSONString(jsonObject.toJSONString()));
         }
         catch (Exception e)
         {

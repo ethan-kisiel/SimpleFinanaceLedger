@@ -22,4 +22,26 @@ public class Constants
     public static String SUBCATEGORY_FILTERS = "SUBCATEGORY_FILTERS";
     public static String ITEMIZATION_FILTERS = "ITEMIZATION_FILTERS";
 
+    public static String formattedFloatAsMoney(float amount)
+    {
+        String floatString = Float.toString(amount);
+        String dollars = floatString.split("\\.")[0];
+        String cents = floatString.split("\\.")[1];
+        String formattedDollars = "";
+        if (cents.length() == 1)
+        {
+            cents += "0";
+        }
+        int x = 0;
+        for (int i = dollars.length()-1; i >= 0; i--)
+        {
+            formattedDollars = dollars.charAt(i) + formattedDollars;
+            if ((++x) % 3 == 0 && i != 0)
+            {
+                formattedDollars = "," + formattedDollars;
+            }
+        }
+
+        return formattedDollars + "." +cents;
+    }
 }

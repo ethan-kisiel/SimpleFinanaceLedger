@@ -1,21 +1,16 @@
 package com.ethankisiel.simplefinanceledger.Controllers;
 
 import com.ethankisiel.simplefinanceledger.Constants;
-import com.ethankisiel.simplefinanceledger.FinanceLedgerApplication;
-import com.ethankisiel.simplefinanceledger.Managers.FiltersManager;
-import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListCell;
+
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import net.synedra.validatorfx.Check;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -130,13 +125,14 @@ public class FiltersModalController implements Initializable
 
         //ReadWriteUtil.saveFilters(parentController.entryFilters);
         parentController.updateFilters();
+        parentController.updateTotal();
         closeModal();
         return;
     }
 
     public void selectAllYears()
     {
-        if (!pendingChanges.keySet().contains(Constants.YEAR_FILTERS))
+        if (!pendingChanges.containsKey(Constants.YEAR_FILTERS))
         {
             ArrayList<CheckBox> columnChanges = new ArrayList<>();
 
@@ -154,7 +150,7 @@ public class FiltersModalController implements Initializable
     }
     public void selectAllCheckbooks()
     {
-        if (!pendingChanges.keySet().contains(Constants.CHECKBOOK_FILTERS))
+        if (!pendingChanges.containsKey(Constants.CHECKBOOK_FILTERS))
         {
             ArrayList<CheckBox> columnChanges = new ArrayList<>();
 
@@ -172,7 +168,7 @@ public class FiltersModalController implements Initializable
     }
     public void selectAllCategories()
     {
-        if (!pendingChanges.keySet().contains(Constants.CATEGORY_FILTERS))
+        if (!pendingChanges.containsKey(Constants.CATEGORY_FILTERS))
         {
             ArrayList<CheckBox> columnChanges = new ArrayList<>();
 
@@ -190,7 +186,7 @@ public class FiltersModalController implements Initializable
     }
     public void selectAllSubcategories()
     {
-        if (!pendingChanges.keySet().contains(Constants.SUBCATEGORY_FILTERS))
+        if (!pendingChanges.containsKey(Constants.SUBCATEGORY_FILTERS))
         {
             ArrayList<CheckBox> columnChanges = new ArrayList<>();
 
@@ -208,7 +204,7 @@ public class FiltersModalController implements Initializable
     }
     public void selectAllItemizations()
     {
-        if (!pendingChanges.keySet().contains(Constants.ITEMIZATION_FILTERS))
+        if (!pendingChanges.containsKey(Constants.ITEMIZATION_FILTERS))
         {
             ArrayList<CheckBox> columnChanges = new ArrayList<>();
 
