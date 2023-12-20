@@ -204,6 +204,11 @@
               <MenuItem mnemonicParsing="false" onAction="#showFilterModal" text="Filters" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="View">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showReportModal" text="Report" />
+               </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />

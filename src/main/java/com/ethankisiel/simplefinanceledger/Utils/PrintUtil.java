@@ -6,10 +6,11 @@ import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Window;
 
 public class PrintUtil
 {
-    public static void printView(Node view)
+    public static void printView(Node view, Window window)
     {
         Printer printer = Printer
                 .getAllPrinters()
@@ -32,6 +33,8 @@ public class PrintUtil
         // Compute the extents, in pixels, of the printable area of the page
         int width = (int) (pageLayout.getPrintableWidth() * pt2px);
         int height = (int) (pageLayout.getPrintableHeight() * pt2px);
+
+        job.showPrintDialog(window);
 
 
         // Finally, we can now print the ImageView

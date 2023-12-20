@@ -8,10 +8,12 @@ import com.ethankisiel.simplefinanceledger.Models.Entry;
 import com.ethankisiel.simplefinanceledger.Models.Filter;
 import com.ethankisiel.simplefinanceledger.Models.SortByDate;
 
+import com.ethankisiel.simplefinanceledger.Utils.PrintUtil;
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 
 import com.ethankisiel.simplefinanceledger.Utils.ValidationUtil;
 import com.ethankisiel.simplefinanceledger.Views.FiltersModalView;
+import com.ethankisiel.simplefinanceledger.Views.ReportModalView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -31,7 +33,7 @@ import java.util.function.Predicate;
 
 public class LedgerEditorController implements Initializable
 {
-    private EntityManager entityManager;
+    public EntityManager entityManager;
     public FiltersManager filtersManager;
 
     public HashMap<String, HashMap<String, Boolean>> entryFilters;
@@ -475,5 +477,18 @@ public class LedgerEditorController implements Initializable
             e.printStackTrace();
         }
         return;
+    }
+
+    public void showReportModal()
+    {
+        try
+        {
+            ReportModalView.display(this);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        //System.out.println("REPORT MODAL");
     }
 }

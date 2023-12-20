@@ -2,14 +2,11 @@ package com.ethankisiel.simplefinanceledger.Managers;
 
 import com.ethankisiel.simplefinanceledger.Constants;
 import com.ethankisiel.simplefinanceledger.Models.Entry;
-import com.ethankisiel.simplefinanceledger.Models.Filter;
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 
 import java.io.IOException;
-import java.security.Key;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class FiltersManager

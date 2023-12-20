@@ -1,5 +1,8 @@
 package com.ethankisiel.simplefinanceledger;
 
+import java.math.BigDecimal;
+
+
 public class Constants
 {
     public static String EMPTY_STRING = "";
@@ -24,6 +27,8 @@ public class Constants
 
     public static String formattedFloatAsMoney(float amount)
     {
+        //Float truncatedAmount = new BigDecimal(amount).setScale(2,  RoundingMode.HALF_UP).floatValue();
+
         String floatString = Float.toString(amount);
         String dollars = floatString.split("\\.")[0];
         String cents = floatString.split("\\.")[1];
@@ -31,7 +36,11 @@ public class Constants
         if (cents.length() == 1)
         {
             cents += "0";
+        } else if (cents.length() > 2)
+        {
+            cents = cents.substring(0, 2);
         }
+
         int x = 0;
         for (int i = dollars.length()-1; i >= 0; i--)
         {

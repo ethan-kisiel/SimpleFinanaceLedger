@@ -2,36 +2,51 @@
 {
 	"ITEMIZATION_FILTERS":
 	{
-		"Itemization123":true,
-		"A NEW MF FILTER OPTION":true,
-		"K of C Raffle":true,
+		"Gift Shopping":true,
+		"Magazine Subscription":true,
+		"Reading Materials":true,
+		"Office Expenses":true,
+		"Dinner Event":true,
+		"Decorative Items":true,
+		"Coffee Break":true,
+		"Family Gift":true,
 		"Misc":true,
-		"Itemization Filter trigger":true,
-		"ITEMIZATION 69":true
+		"Grocery Shopping":true
 	},
 	"CHECKBOOK_FILTERS":
 	{
-		"Checkbook #1":true,
-		"New Checkbook":true,
-		"Cash":true
+		"Wallet":true,
+		"Credit Card #1234":true,
+		"Savings Account":true,
+		"Cash":true,
+		"Checkbook #4422":true,
+		"Checking Account #5678":true
 	},
 	"YEAR_FILTERS":
 	{
+		"2024":false,
 		"2023":true,
-		"2022":true
+		"2022":false,
+		"2021":false
 	},
 	"CATEGORY_FILTERS":
 	{
-		"Donations":true,
+		"Miscellaneous":true,
+		"Groceries":true,
+		"Entertainment":true,
+		"Dining Out":true,
+		"Home Improvement":true,
 		"Misc":true,
-		"Separate Category":true
+		"Gifts":true
 	},
 	"SUBCATEGORY_FILTERS":
 	{
-		"505 park ave":true,
+		"Restaurant":true,
+		"Reading":true,
+		"Personal":true,
+		"Holiday":true,
 		"Misc":true,
-		"here is a new subcategory option":true,
-		"K of C":true,
-		"here is a new subcategory option 1":true
+		"Decor":true,
+		"Food":true
 	}
 }

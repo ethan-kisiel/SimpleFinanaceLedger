@@ -252,6 +252,14 @@ public class EntityManager
 
         int lastIndex = entries.size() - 1;
 
-        return entries.get(lastIndex).getId() + 1;
+        try
+        {
+            return entries.get(lastIndex).getId() + 1;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

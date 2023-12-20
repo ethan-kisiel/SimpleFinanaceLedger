@@ -79,8 +79,8 @@ public class ValidationUtil
         String selectFieldData = selectField.getValue();
         String textFieldData = textField.getText();
 
-        System.out.println(selectFieldData);
-        System.out.println(textFieldData);
+//        System.out.println(selectFieldData);
+//        System.out.println(textFieldData);
 
         if (selectFieldData != null)
         {
