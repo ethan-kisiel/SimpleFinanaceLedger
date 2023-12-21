@@ -8,6 +8,7 @@ import com.ethankisiel.simplefinanceledger.Models.Entry;
 import com.ethankisiel.simplefinanceledger.Models.Filter;
 import com.ethankisiel.simplefinanceledger.Models.SortByDate;
 
+import com.ethankisiel.simplefinanceledger.Utils.MoneyUtil;
 import com.ethankisiel.simplefinanceledger.Utils.PrintUtil;
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 
@@ -219,7 +220,7 @@ public class LedgerEditorController implements Initializable
     public void initializeTable(List<Entry> entries)
     {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("displayDate"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("displayAmount"));
         checkNumberColumn.setCellValueFactory(new PropertyValueFactory<>("checkNumber"));
         checkbookColumn.setCellValueFactory(new PropertyValueFactory<>("checkbook"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -252,14 +253,14 @@ public class LedgerEditorController implements Initializable
 
     public void updateTotal()
     {
-        float total = 0.0f;
+        int total = 0;
 
         for (Entry entry : entryTable.getItems())
         {
             total += entry.getAmount();
         }
 
-        totalText.setText(Constants.formattedFloatAsMoney(total));
+        totalText.setText(MoneyUtil.centsToString(total));
     }
 
     public boolean checkForCompletion()
@@ -274,7 +275,7 @@ public class LedgerEditorController implements Initializable
         boolean isCategoryValid = (categorySelector.getValue() != null) || !categoryField.getText().isEmpty();
         boolean isSubcategoryValid = (subcategorySelector.getValue() != null) || !subcategoryField.getText().isEmpty();
         boolean isItemizationValid = (itemizationSelector.getValue() != null) || !itemizationField.getText().isEmpty();
-        //boolean
+
 
         isComplete = (isDateValid && isAmountValid && isCheckbookValid && isCategoryValid && isSubcategoryValid && isItemizationValid);
 
@@ -356,7 +357,7 @@ public class LedgerEditorController implements Initializable
             deleteButton.setDisable(false);
 
             datePicker.setValue(selectedEntry.getLocalDate());
-            amountField.setText(String.valueOf(selectedEntry.getAmount()));
+            amountField.setText(selectedEntry.getDisplayAmount());
             checkNumberField.setText(selectedEntry.getCheckNumber());
 
             checkbookSelector.setValue(selectedEntry.getCheckbook());
@@ -374,7 +375,6 @@ public class LedgerEditorController implements Initializable
 
         if (checkForCompletion())
         {
-
             LocalDate date = datePicker.getValue();
             String amount = amountField.getText();
             String checkNumber = checkNumberField.getText();
@@ -398,7 +398,7 @@ public class LedgerEditorController implements Initializable
             }
 
             entry.setDate(date);
-            entry.setAmount(Float.parseFloat(amount));
+            entry.setAmount(MoneyUtil.floatToCents(Float.parseFloat(amount)));
             entry.setCheckNumber(checkNumber);
 
             entry.setCheckbook(checkbook);

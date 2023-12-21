@@ -104,7 +104,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <ChoiceBox id="checkbookSelector" fx:id="checkbookSelector" onMousePressed="#checkForCompletion" prefWidth="150.0" />
+                        <ChoiceBox id="checkbookSelector" fx:id="checkbookSelector" onMousePressed="#checkForCompletion" prefWidth="300.0" />
                         <TextField id="newCheckbookField" fx:id="checkbookField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New Checkbook" />
                      </children>
                   </VBox>
@@ -114,7 +114,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <ChoiceBox id="categorySelector" fx:id="categorySelector" onMouseClicked="#checkForCompletion" prefWidth="150.0" />
+                        <ChoiceBox id="categorySelector" fx:id="categorySelector" onMouseClicked="#checkForCompletion" prefWidth="300.0" />
                         <TextField id="categoryTextField" fx:id="categoryField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New Category" />
                      </children>
                      <padding>
@@ -127,7 +127,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <ChoiceBox id="subcategorySelector" fx:id="subcategorySelector" onMouseClicked="#checkForCompletion" prefWidth="150.0" />
+                        <ChoiceBox id="subcategorySelector" fx:id="subcategorySelector" onMouseClicked="#checkForCompletion" prefWidth="300.0" />
                         <TextField id="subcategoryTextField" fx:id="subcategoryField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New Subcategory" />
                      </children>
                      <padding>
@@ -140,7 +140,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <ChoiceBox id="itemizationSelector" fx:id="itemizationSelector" onMouseClicked="#checkForCompletion" prefWidth="150.0" />
+                        <ChoiceBox id="itemizationSelector" fx:id="itemizationSelector" onMouseClicked="#checkForCompletion" prefWidth="300.0" />
                         <TextField id="itemizationTextField" fx:id="itemizationField" onAction="#checkForCompletion" onKeyTyped="#checkForCompletion" promptText="New itemization" />
                      </children>
                      <padding>

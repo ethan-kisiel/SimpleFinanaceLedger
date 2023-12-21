@@ -4,11 +4,11 @@
 	{
 		"Gift Shopping":true,
 		"Magazine Subscription":true,
-		"Reading Materials":true,
 		"Office Expenses":true,
 		"Dinner Event":true,
-		"Decorative Items":true,
+		"Reading Materials":true,
 		"Coffee Break":true,
+		"Decorative Items":true,
 		"Family Gift":true,
 		"Misc":true,
 		"Grocery Shopping":true
@@ -24,10 +24,10 @@
 	},
 	"YEAR_FILTERS":
 	{
-		"2024":false,
+		"2024":true,
 		"2023":true,
-		"2022":false,
-		"2021":false
+		"2022":true,
+		"2021":true
 	},
 	"CATEGORY_FILTERS":
 	{

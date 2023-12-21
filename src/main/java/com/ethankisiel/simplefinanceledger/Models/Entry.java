@@ -1,5 +1,6 @@
 package com.ethankisiel.simplefinanceledger.Models;
 
+import com.ethankisiel.simplefinanceledger.Utils.MoneyUtil;
 import javafx.scene.control.PasswordField;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +14,7 @@ public class Entry
 {
     private int id;
     private Date date;
-    private float amount;
+    private int amount;
     private String checkNumber;
 
     private String checkbook;
@@ -100,18 +101,28 @@ public class Entry
     {
         try
         {
-            this.amount = newAmount;
+            this.amount = MoneyUtil.floatToCents(newAmount);
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            this.amount = 0.0f;
+            this.amount = 0;
         }
     }
 
-    public float getAmount()
+    public void setAmount(int amount)
+    {
+        this.amount = amount;
+    }
+
+    public int getAmount()
     {
         return this.amount;
+    }
+
+    public String getDisplayAmount()
+    {
+        return MoneyUtil.centsToString(this.amount);
     }
 
 

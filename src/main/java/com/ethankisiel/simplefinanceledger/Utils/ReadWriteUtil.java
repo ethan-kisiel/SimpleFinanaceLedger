@@ -71,7 +71,7 @@ public class ReadWriteUtil
 
                     entry.setId(((Long) jsonObject.get("id")).intValue());
                     entry.setDate((String) jsonObject.get("date"));
-                    entry.setAmount(((Double) jsonObject.get("amount")).floatValue());
+                    entry.setAmount(((Long) jsonObject.get("amount")).intValue());
                     entry.setCheckbook((String) jsonObject.get("checkbook"));
                     entry.setCheckNumber((String) jsonObject.get("checkNumber"));
                     entry.setCategory((String) jsonObject.get("category"));

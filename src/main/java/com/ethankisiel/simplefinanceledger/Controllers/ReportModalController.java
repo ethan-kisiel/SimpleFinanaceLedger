@@ -4,6 +4,7 @@ import com.ethankisiel.simplefinanceledger.Components.ReportTreeItem;
 import com.ethankisiel.simplefinanceledger.Constants;
 import com.ethankisiel.simplefinanceledger.Managers.EntityManager;
 import com.ethankisiel.simplefinanceledger.Models.Entry;
+import com.ethankisiel.simplefinanceledger.Utils.MoneyUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,10 +16,7 @@ import javafx.stage.Stage;
 
 import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ReportModalController implements Initializable
 {
@@ -63,49 +61,57 @@ public class ReportModalController implements Initializable
     {
         this.setTreeContent();
 
-        float totalAmount = 0.0f;
+        int totalAmount = 0;
         ReportTreeItem rootItem = new ReportTreeItem("Grand Total", Constants.EMPTY_STRING);
 
-        for (String category : treeContent.keySet())
+        ArrayList<String> categoriesList = new ArrayList<>(treeContent.keySet());
+        Collections.sort(categoriesList);
+
+        for (String category : categoriesList)
         {
-            float categoryTotal = 0.0f;
+            int categoryTotal = 0;
             ReportTreeItem categoryTreeItem = new ReportTreeItem(category, Constants.EMPTY_STRING);
 
+            ArrayList<String> subcategoriesList = new ArrayList<>(treeContent.get(category).keySet());
+            Collections.sort(subcategoriesList);
 
-            for (String subcategory : treeContent.get(category).keySet())
+            for (String subcategory : subcategoriesList)
             {
-                float subcategoryTotal = 0.0f;
+                int subcategoryTotal = 0;
                 ReportTreeItem subcategoryTreeItem = new ReportTreeItem(subcategory, Constants.EMPTY_STRING);
 
-                for (String itemization : treeContent.get(category).get(subcategory).keySet())
+                ArrayList<String> itemizationsList = new ArrayList<>(treeContent.get(category).get(subcategory).keySet());
+                Collections.sort(itemizationsList);
+
+                for (String itemization : itemizationsList)
                 {
-                    float itemizationTotal = 0.0f;
+                    int itemizationTotal = 0;
                     ReportTreeItem itemizationTreeItem = new ReportTreeItem(itemization, Constants.EMPTY_STRING);
 
                     for (Entry entry : treeContent.get(category).get(subcategory).get(itemization))
                     {
-                        ReportTreeItem entryTreeItem = new ReportTreeItem(entry.getCheckbook(), Constants.formattedFloatAsMoney(entry.getAmount()));
+                        ReportTreeItem entryTreeItem = new ReportTreeItem(entry.getCheckbook(), MoneyUtil.centsToString(entry.getAmount()));
 
                         itemizationTotal += entry.getAmount();
                         itemizationTreeItem.getChildren().add(entryTreeItem);
                     }
 
                     subcategoryTotal += itemizationTotal;
-                    itemizationTreeItem.setAmountText(Constants.formattedFloatAsMoney(itemizationTotal));
+                    itemizationTreeItem.setAmountText(MoneyUtil.centsToString(itemizationTotal));
                     subcategoryTreeItem.getChildren().add(itemizationTreeItem);
                 }
 
                 categoryTotal += subcategoryTotal;
-                subcategoryTreeItem.setAmountText(Constants.formattedFloatAsMoney(subcategoryTotal));
+                subcategoryTreeItem.setAmountText(MoneyUtil.centsToString(subcategoryTotal));
                 categoryTreeItem.getChildren().add(subcategoryTreeItem);
             }
 
             totalAmount += categoryTotal;
-            categoryTreeItem.setAmountText(Constants.formattedFloatAsMoney(categoryTotal));
+            categoryTreeItem.setAmountText(MoneyUtil.centsToString(categoryTotal));
             rootItem.getChildren().add(categoryTreeItem);
         }
 
-        rootItem.setAmountText(Constants.formattedFloatAsMoney(totalAmount));
+        rootItem.setAmountText(MoneyUtil.centsToString(totalAmount));
         rootItem.setExpanded(true);
         treeView.setRoot(rootItem);
         treeView.setShowRoot(true);
@@ -120,7 +126,6 @@ public class ReportModalController implements Initializable
     public void closeModal()
     {
         Stage stage = (Stage) closeButton.getScene().getWindow();
-
         stage.close();
     }
 }
