@@ -5,7 +5,7 @@ public class MoneyUtil
     public static int floatToCents(float amount)
     {
         int cents = (int) (amount * 100);
-        return 0;
+        return cents;
     }
 
     public static String centsToString(int cents)

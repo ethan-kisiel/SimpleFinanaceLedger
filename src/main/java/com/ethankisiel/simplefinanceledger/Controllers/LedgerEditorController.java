@@ -398,7 +398,7 @@ public class LedgerEditorController implements Initializable
             }
 
             entry.setDate(date);
-            entry.setAmount(MoneyUtil.floatToCents(Float.parseFloat(amount)));
+            entry.setAmount((Float.parseFloat(amount)));
             entry.setCheckNumber(checkNumber);
 
             entry.setCheckbook(checkbook);
