@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import org.controlsfx.validation.ValidationResult;
 import org.controlsfx.validation.ValidationSupport;
@@ -181,6 +182,14 @@ public class LedgerEditorController implements Initializable
 
 
         //entryFilters = FiltersManager.currentFilters(entityManager);
+//        checkNumberColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("fieldCheckNumber"));
+        checkNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        entryTable.setEditable(true);
+        // allows the individual cells to be selected
+        entryTable.getSelectionModel().cellSelectionEnabledProperty().set(true);
+        checkNumberColumn.setEditable(true);
+
+//        entryTable.setEditable(true);
 
         initializeTable(entityManager.entries);
     }
@@ -292,11 +301,13 @@ public class LedgerEditorController implements Initializable
         {
             deleteButton.setDisable(true);
             changeModeText.setText(Constants.CREATE_ENTRY);
+            saveButton.setText("Create");
         }
         else
         {
             deleteButton.setDisable(false);
             changeModeText.setText(Constants.EDIT_ENTRY);
+            saveButton.setText("Save");
         }
 
         return isComplete;
@@ -361,9 +372,17 @@ public class LedgerEditorController implements Initializable
             checkNumberField.setText(selectedEntry.getCheckNumber());
 
             checkbookSelector.setValue(selectedEntry.getCheckbook());
+            checkbookField.setText(selectedEntry.getCheckbook());
+
             categorySelector.setValue(selectedEntry.getCategory());
+            categoryField.setText(selectedEntry.getCategory());
+
             subcategorySelector.setValue(selectedEntry.getSubcategory());
+            subcategoryField.setText(selectedEntry.getSubcategory());
+
             itemizationSelector.setValue(selectedEntry.getItemization());
+            itemizationField.setText(selectedEntry.getItemization());
+
             notesField.setText(selectedEntry.getNotes());
 
             checkForCompletion();
