@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Year;
+import java.time.ZoneOffset;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -182,14 +183,177 @@ public class LedgerEditorController implements Initializable
 
 
         //entryFilters = FiltersManager.currentFilters(entityManager);
-//        checkNumberColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("fieldCheckNumber"));
-        checkNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        entryTable.setEditable(true);
+
         // allows the individual cells to be selected
-        entryTable.getSelectionModel().cellSelectionEnabledProperty().set(true);
+//        entryTable.getSelectionModel().cellSelectionEnabledProperty().set(true);
+
+        // INITIALIZE CELL EDITS
+        entryTable.setEditable(true);
+
+        dateColumn.setEditable(true);
+
+        checkbookColumn.setEditable(true);
+
         checkNumberColumn.setEditable(true);
 
-//        entryTable.setEditable(true);
+        amountColumn.setEditable(true);
+
+        categoryColumn.setEditable(true);
+
+        subcategoryColumn.setEditable(true);
+
+        itemizationColumn.setEditable(true);
+
+
+
+
+//        checkNumberColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("fieldCheckNumber"));
+
+        dateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        dateColumn.setOnEditCommit(event -> {
+            final String value = event.getNewValue();
+            if (value == null || value.equals(""))
+            {
+                return;
+            }
+
+            final LocalDate localDate = LocalDate.parse(value);
+            final Date valueDate = Date.from(localDate.atTime(12, 0).toInstant(ZoneOffset.ofTotalSeconds(0)));
+            this.datePicker.setValue(valueDate.toInstant().atOffset(ZoneOffset.ofTotalSeconds(0)).toLocalDate());
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+        checkbookColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        checkbookColumn.setOnEditCommit(event -> {
+            final String newValue = event.getNewValue();
+            final String value = newValue != null ? newValue : event.getOldValue();
+
+            checkbookField.setText(value);
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+
+        checkNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        checkNumberColumn.setOnEditCommit(event -> {
+            final String newValue = event.getNewValue();
+            final String value = newValue != null ? newValue : event.getOldValue();
+
+            checkNumberField.setText(value);
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+        amountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        amountColumn.setOnEditCommit(event -> {
+            final String newValue = event.getNewValue();
+            final String value = newValue != null ? newValue : event.getOldValue();
+
+            amountField.setText(value);
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+
+        categoryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        categoryColumn.setOnEditCommit(event -> {
+            final String newValue = event.getNewValue();
+            final String value = newValue != null ? newValue : event.getOldValue();
+
+            categoryField.setText(value);
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+        subcategoryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        subcategoryColumn.setOnEditCommit(event -> {
+            final String newValue = event.getNewValue();
+            final String value = newValue != null ? newValue : event.getOldValue();
+
+            subcategoryField.setText(value);
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+        itemizationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        itemizationColumn.setOnEditCommit(event -> {
+            final String newValue = event.getNewValue();
+            final String value = newValue != null ? newValue : event.getOldValue();
+
+            itemizationField.setText(value);
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+        notesColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        notesColumn.setOnEditCommit(event -> {
+            final String newValue = event.getNewValue();
+            final String value = newValue != null ? newValue : event.getOldValue();
+
+            notesField.setText(value);
+
+            try
+            {
+                saveEntry();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+        });
+
+
+        //entryTable.setEditable(true);
 
         initializeTable(entityManager.entries);
     }
