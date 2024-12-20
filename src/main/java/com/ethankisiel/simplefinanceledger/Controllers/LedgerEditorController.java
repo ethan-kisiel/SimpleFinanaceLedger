@@ -31,6 +31,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -213,14 +214,16 @@ public class LedgerEditorController implements Initializable
 
         dateColumn.setOnEditCommit(event -> {
             final String value = event.getNewValue();
-            if (value == null || value.equals(""))
+            if (value == null || value.isEmpty())
             {
                 return;
             }
-
-            final LocalDate localDate = LocalDate.parse(value);
+            final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+            final LocalDate localDate = LocalDate.parse(value, formatter);
             final Date valueDate = Date.from(localDate.atTime(12, 0).toInstant(ZoneOffset.ofTotalSeconds(0)));
             this.datePicker.setValue(valueDate.toInstant().atOffset(ZoneOffset.ofTotalSeconds(0)).toLocalDate());
+
+
 
             try
             {
