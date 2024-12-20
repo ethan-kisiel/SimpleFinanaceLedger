@@ -1,8 +1,19 @@
-#treeView .tree-cell:odd {
--fx-background-color: #f9f9f9;
--fx-background-insets: 0, 0 0 1 0;
+#deleteButton {
+    -fx-background-color: #dc3545; /* Bootstrap danger color */
+    -fx-border-color: #dc3545;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 8 8;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
 }
 
-#treeView .tree-cell:selected {
--fx-background-color: #0093ff;
+#deleteButton:hover {
+    -fx-background-color: #c82333;
+    -fx-border-color: #c82333;
+}
+
+#deleteButton:pressed {
+    -fx-background-color: #bd2130;
+    -fx-border-color: #bd2130;
 }

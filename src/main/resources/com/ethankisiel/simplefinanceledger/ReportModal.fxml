@@ -37,7 +37,7 @@
    <center>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS" />
+            <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" stylesheets="@TreeView.css" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS" />
          </children>
          <padding>
             <Insets left="15.0" right="15.0" />

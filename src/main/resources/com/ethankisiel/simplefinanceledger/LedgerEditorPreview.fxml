@@ -52,7 +52,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Text fx:id="changeModeText" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Entry" underline="true">
+                        <Text fx:id="changeModeText" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Entry">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -165,11 +165,11 @@
                            <font>
                               <Font size="16.0" />
                            </font></Button>
-                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearFields" text="Clear">
+                        <Button fx:id="clearButton" cancelButton="true" mnemonicParsing="false" onAction="#clearFields" text="Clear">
                            <font>
                               <Font size="16.0" />
                            </font></Button>
-                        <Button id="deleteButton" fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteEntry" text="Delete" VBox.vgrow="ALWAYS">
+                        <Button id="deleteButton" fx:id="deleteButton" mnemonicParsing="false" onAction="#showDeleteModal" stylesheets="@LedgerEditor.css" text="Delete" VBox.vgrow="ALWAYS">
                            <font>
                               <Font size="16.0" />
                            </font></Button>

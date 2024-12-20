@@ -1,6 +1,9 @@
 package com.ethankisiel.simplefinanceledger.Models;
 
 import com.ethankisiel.simplefinanceledger.Utils.MoneyUtil;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.PasswordField;
 
 import java.text.SimpleDateFormat;

@@ -13,6 +13,7 @@ import com.ethankisiel.simplefinanceledger.Utils.PrintUtil;
 import com.ethankisiel.simplefinanceledger.Utils.ReadWriteUtil;
 
 import com.ethankisiel.simplefinanceledger.Utils.ValidationUtil;
+import com.ethankisiel.simplefinanceledger.Views.DeleteModalView;
 import com.ethankisiel.simplefinanceledger.Views.FiltersModalView;
 import com.ethankisiel.simplefinanceledger.Views.ReportModalView;
 import javafx.fxml.FXML;
@@ -676,5 +677,17 @@ public class LedgerEditorController implements Initializable
             e.printStackTrace();
         }
         //System.out.println("REPORT MODAL");
+    }
+
+    public void showDeleteModal()
+    {
+        try
+        {
+            DeleteModalView.display(this);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
