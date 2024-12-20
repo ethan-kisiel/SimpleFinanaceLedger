@@ -615,7 +615,7 @@
 
 	{
 		"date":"2024-01-04",
-		"amount":4690,
+		"amount":42069,
 		"checkNumber":"7890",
 		"notes":"this is a note ->  all are the same",
 		"checkbook":"Credit Card #1234",
@@ -22324,19 +22324,6 @@
 	
 
 	{
-		"date":"2024-01-02",
-		"amount":9500,
-		"checkNumber":"4567",
-		"notes":"this is a note ->  all are the same",
-		"checkbook":"Credit Card #1234",
-		"id":1718,
-		"category":"Dining Out",
-		"subcategory":"Restaurant",
-		"itemization":"Dinner Event"
-	},
-	
-
-	{
 		"date":"2022-10-03",
 		"amount":9500,
 		"checkNumber":"3456",
@@ -24608,19 +24595,6 @@
 		"category":"Gifts",
 		"subcategory":"Holiday",
 		"itemization":"Decorative Items"
-	},
-	
-
-	{
-		"date":"2024-01-02",
-		"amount":12000,
-		"checkNumber":"1234",
-		"notes":"this is a note ->  all are the same",
-		"checkbook":"Savings Account",
-		"id":1894,
-		"category":"Home Improvement",
-		"subcategory":"Food",
-		"itemization":"Magazine Subscription"
 	},
 	
 
@@ -30020,19 +29994,6 @@
 	
 
 	{
-		"date":"2024-01-01",
-		"amount":4230,
-		"checkNumber":"1234",
-		"notes":"this is a note ->  all are the same",
-		"checkbook":"Credit Card #1234",
-		"id":2311,
-		"category":"Dining Out",
-		"subcategory":"Food",
-		"itemization":"Gift Shopping"
-	},
-	
-
-	{
 		"date":"2021-02-21",
 		"amount":7898,
 		"checkNumber":"7890",
@@ -30367,19 +30328,6 @@
 		"category":"Dining Out",
 		"subcategory":"Personal",
 		"itemization":"Office Expenses"
-	},
-	
-
-	{
-		"date":"2021-01-11",
-		"amount":7898,
-		"checkNumber":"1234",
-		"notes":"this is a note ->  all are the same",
-		"checkbook":"Checkbook #4422",
-		"id":2338,
-		"category":"Dining Out",
-		"subcategory":"Holiday",
-		"itemization":"Magazine Subscription"
 	},
 	
 
@@ -33302,7 +33250,7 @@
 		"notes":"this is a note ->  all are the same",
 		"checkbook":"Cash",
 		"id":2563,
-		"category":"Home Improvement",
+		"category":"Home Stuff",
 		"subcategory":"Restaurant",
 		"itemization":"Decorative Items"
 	},
@@ -37781,7 +37729,7 @@
 	
 
 	{
-		"date":"2024-01-01",
+		"date":"2024-01-02",
 		"amount":4075,
 		"checkNumber":"5678",
 		"notes":"this is a note ->  all are the same",
@@ -38973,5 +38921,31 @@
 		"category":"Entertainment",
 		"subcategory":"Personal",
 		"itemization":"Gift Shopping"
+	},
+	
+
+	{
+		"date":"2024-05-29",
+		"amount":13400,
+		"checkNumber":"",
+		"notes":"",
+		"checkbook":"Savings Account",
+		"id":3000,
+		"category":"Home Improvement",
+		"subcategory":"Reading",
+		"itemization":"Office Expenses"
+	},
+	
+
+	{
+		"date":"2024-05-22",
+		"amount":66600,
+		"checkNumber":"",
+		"notes":"fuuuuuuuck",
+		"checkbook":"Wallet",
+		"id":3001,
+		"category":"Miscellaneous",
+		"subcategory":"Reading",
+		"itemization":"Office Expenses"
 	}
 ]
