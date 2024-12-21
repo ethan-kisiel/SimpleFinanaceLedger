@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.HBox;
@@ -28,6 +29,9 @@ public class ReportModalController implements Initializable
 
     @FXML
     TreeView<HBox> treeView;
+
+    @FXML
+    Label grandTotalLabel;
 
 
     @Override
@@ -112,9 +116,10 @@ public class ReportModalController implements Initializable
         }
 
         rootItem.setAmountText(MoneyUtil.centsToString(totalAmount));
+        grandTotalLabel.setText(String.format("Grand Total: $%s", MoneyUtil.centsToString((totalAmount))));
         rootItem.setExpanded(true);
         treeView.setRoot(rootItem);
-        treeView.setShowRoot(true);
+        treeView.setShowRoot(false);
     }
 
     public void setParentController(LedgerEditorController parentController)
