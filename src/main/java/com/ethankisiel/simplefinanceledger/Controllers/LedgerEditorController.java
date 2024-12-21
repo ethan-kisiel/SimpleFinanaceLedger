@@ -50,6 +50,9 @@ public class LedgerEditorController implements Initializable
     private final ValidationSupport validationSupport = new ValidationSupport();
 
     @FXML
+    MenuBar menuBar;
+
+    @FXML
     Text changeModeText;
 
     @FXML
@@ -118,6 +121,11 @@ public class LedgerEditorController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        final String os = System.getProperty("os.name");
+        if (os != null && os.startsWith("Mac"))
+            menuBar.useSystemMenuBarProperty().set(true);
+
+
         deleteButton.setDisable(true);
 
         saveButton.disableProperty().bind(validationSupport.invalidProperty());
